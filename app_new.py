@@ -2,7 +2,6 @@ import streamlit as st
 import nltk
 import spacy
 nltk.download('stopwords')
-spacy.load('en_core_web_sm')
 
 import pandas as pd
 import base64, random
@@ -26,7 +25,6 @@ import requests
 import io
 import openai
 
-import fitz
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
@@ -149,20 +147,20 @@ def course_recommender(course_list):
     return rec_course
 
 
-connection = pymysql.connect(host='localhost', user='root', password='1234')
-cursor = connection.cursor()
+# connection = pymysql.connect(host='localhost', user='root', password='1234')
+# cursor = connection.cursor()
 
 
-def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills,
-                courses):
-    DB_table_name = 'user_data'
-    insert_sql = "insert into " + DB_table_name + """
-    values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-    rec_values = (
-    name, email, str(res_score), timestamp, str(no_of_pages), reco_field, cand_level, skills, recommended_skills,
-    courses)
-    cursor.execute(insert_sql, rec_values)
-    connection.commit()
+# def insert_data(name, email, res_score, timestamp, no_of_pages, reco_field, cand_level, skills, recommended_skills,
+#                 courses):
+#     DB_table_name = 'user_data'
+#     insert_sql = "insert into " + DB_table_name + """
+#     values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+#     rec_values = (
+#     name, email, str(res_score), timestamp, str(no_of_pages), reco_field, cand_level, skills, recommended_skills,
+#     courses)
+#     cursor.execute(insert_sql, rec_values)
+#     connection.commit()
 
 
 st.set_page_config(
@@ -180,27 +178,27 @@ def run():
     # st.sidebar.markdown(link, unsafe_allow_html=True)
     choice = 'Normal User'
     # Create the DB
-    db_sql = """CREATE DATABASE IF NOT EXISTS SRA;"""
-    cursor.execute(db_sql)
-    connection.select_db("sra")
+    # db_sql = """CREATE DATABASE IF NOT EXISTS SRA;"""
+    # cursor.execute(db_sql)
+    # connection.select_db("sra")
 
     # Create table
-    DB_table_name = 'user_data'
-    table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
-                    (ID INT NOT NULL AUTO_INCREMENT,
-                     Name varchar(100) NOT NULL,
-                     Email_ID VARCHAR(50) NOT NULL,
-                     resume_score VARCHAR(8) NOT NULL,
-                     Timestamp VARCHAR(50) NOT NULL,
-                     Page_no VARCHAR(5) NOT NULL,
-                     Predicted_Field VARCHAR(25) NOT NULL,
-                     User_level VARCHAR(30) NOT NULL,
-                     Actual_skills VARCHAR(300) NOT NULL,
-                     Recommended_skills VARCHAR(300) NOT NULL,
-                     Recommended_courses VARCHAR(600) NOT NULL,
-                     PRIMARY KEY (ID));
-                    """
-    cursor.execute(table_sql)
+    # DB_table_name = 'user_data'
+    # table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
+    #                 (ID INT NOT NULL AUTO_INCREMENT,
+    #                  Name varchar(100) NOT NULL,
+    #                  Email_ID VARCHAR(50) NOT NULL,
+    #                  resume_score VARCHAR(8) NOT NULL,
+    #                  Timestamp VARCHAR(50) NOT NULL,
+    #                  Page_no VARCHAR(5) NOT NULL,
+    #                  Predicted_Field VARCHAR(25) NOT NULL,
+    #                  User_level VARCHAR(30) NOT NULL,
+    #                  Actual_skills VARCHAR(300) NOT NULL,
+    #                  Recommended_skills VARCHAR(300) NOT NULL,
+    #                  Recommended_courses VARCHAR(600) NOT NULL,
+    #                  PRIMARY KEY (ID));
+    #                 """
+    # cursor.execute(table_sql)
     if choice == 'Normal User':
         # st.markdown('''<h4 style='text-align: left; color: #d73b5c;'>* Upload your resume, and get smart recommendation based on it."</h4>''',
         #             unsafe_allow_html=True)
@@ -450,43 +448,43 @@ def run():
         st.success('Welcome to Admin Side')
         # st.sidebar.subheader('**ID / Password Required!**')
 
-        ad_user = st.text_input("Username")
-        ad_password = st.text_input("Password", type='password')
-        if st.button('Login'):
-            if ad_user == 'Titans' and ad_password == 'sih6':
-                st.success("Welcome Turing_Titans")
-                # Display Data
-                cursor.execute('''SELECT*FROM user_data''')
-                data = cursor.fetchall()
-                st.header("**User's👨‍💻 Data**")
-                df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Resume Score', 'Timestamp', 'Total Page',
-                                                 'Predicted Field', 'User Level', 'Actual Skills', 'Recommended Skills',
-                                                 'Recommended Course'])
-                st.dataframe(df)
-                st.markdown(get_table_download_link(df, 'User_Data.csv', 'Download Report'), unsafe_allow_html=True)
-                ## Admin Side Data
-                query = 'select * from user_data;'
-                plot_data = pd.read_sql(query, connection)
+        # ad_user = st.text_input("Username")
+        # ad_password = st.text_input("Password", type='password')
+        # if st.button('Login'):
+        #     if ad_user == 'Titans' and ad_password == 'sih6':
+        #         st.success("Welcome Turing_Titans")
+        #         # Display Data
+        #         cursor.execute('''SELECT*FROM user_data''')
+        #         data = cursor.fetchall()
+        #         st.header("**User's👨‍💻 Data**")
+        #         df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Resume Score', 'Timestamp', 'Total Page',
+        #                                          'Predicted Field', 'User Level', 'Actual Skills', 'Recommended Skills',
+        #                                          'Recommended Course'])
+        #         st.dataframe(df)
+        #         st.markdown(get_table_download_link(df, 'User_Data.csv', 'Download Report'), unsafe_allow_html=True)
+        #         ## Admin Side Data
+        #         query = 'select * from user_data;'
+        #         plot_data = pd.read_sql(query, connection)
 
-                ## Pie chart for predicted field recommendations
-                labels = plot_data.Predicted_Field.unique()
-                print(labels)
-                values = plot_data.Predicted_Field.value_counts()
-                print(values)
-                st.subheader("📈 **Pie-Chart for Predicted Field Recommendations**")
-                fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills')
-                st.plotly_chart(fig)
+        #         ## Pie chart for predicted field recommendations
+        #         labels = plot_data.Predicted_Field.unique()
+        #         print(labels)
+        #         values = plot_data.Predicted_Field.value_counts()
+        #         print(values)
+        #         st.subheader("📈 **Pie-Chart for Predicted Field Recommendations**")
+        #         fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills')
+        #         st.plotly_chart(fig)
 
-                ### Pie chart for User's👨‍💻 Experienced Level
-                labels = plot_data.User_level.unique()
-                values = plot_data.User_level.value_counts()
-                st.subheader("📈 ** Pie-Chart for User's👨‍💻 Experienced Level**")
-                fig = px.pie(df, values=values, names=labels, title="Pie-Chart📈 for User's👨‍💻 Experienced Level")
-                st.plotly_chart(fig)
+        #         ### Pie chart for User's👨‍💻 Experienced Level
+        #         labels = plot_data.User_level.unique()
+        #         values = plot_data.User_level.value_counts()
+        #         st.subheader("📈 ** Pie-Chart for User's👨‍💻 Experienced Level**")
+        #         fig = px.pie(df, values=values, names=labels, title="Pie-Chart📈 for User's👨‍💻 Experienced Level")
+        #         st.plotly_chart(fig)
 
 
-            else:
-                st.error("Wrong ID & Password Provided")
+        #     else:
+        #         st.error("Wrong ID & Password Provided")
 
 
 run()
