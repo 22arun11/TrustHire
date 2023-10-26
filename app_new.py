@@ -1,5 +1,6 @@
 import streamlit as st
 import nltk
+nltk.download('stopwords')
 import spacy
 import pandas as pd
 import base64, random
@@ -18,7 +19,7 @@ from Courses import ds_course, web_course, android_course, ios_course, uiux_cour
 import pafy
 import plotly.express as px
 import youtube_dl
-nltk.download('stopwords')
+
 import requests
 import io
 import openai
