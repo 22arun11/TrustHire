@@ -24,7 +24,6 @@ import requests
 import io
 import openai
 
-import fitz
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
