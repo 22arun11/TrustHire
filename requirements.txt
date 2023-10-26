@@ -9,9 +9,11 @@ streamlit-tags
 Pillow
 nltk
 pdfminer3
+spacy
 openai
 fitz
 PyMuPDF
+
 
 
 
