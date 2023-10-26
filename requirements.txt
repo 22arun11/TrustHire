@@ -16,6 +16,7 @@ spacy-loggers==1.0.5
 openai
 fitz
 PyMuPDF
+en_core_web_sm
 
 
 
