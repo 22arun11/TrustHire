@@ -1,10 +1,7 @@
 import streamlit as st
 import nltk
-import spacy
 nltk.download('stopwords')
 # spacy.load('en_core_web_sm')
-import en_core_web_sm
-en_core_web_sm.load()
 import pandas as pd
 import base64, random
 import time, datetime
@@ -19,10 +16,7 @@ from streamlit_tags import st_tags
 from PIL import Image
 import pymysql
 from Courses import ds_course, web_course, android_course, ios_course, uiux_course, resume_videos, interview_videos
-import pafy
 import plotly.express as px
-import youtube_dl
-import requests
 import io
 import openai
 
