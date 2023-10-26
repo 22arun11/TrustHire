@@ -13,7 +13,7 @@ spacy
 openai
 fitz
 PyMuPDF
-
+spacy[en]
 
 
 
