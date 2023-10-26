@@ -16,3 +16,10 @@ spacy-loggers==1.0.5
 openai
 fitz
 PyMuPDF==1.16.14
+spacy[en_core_web_sm]
+spacy[en]
+#i want to install en_core_web_sm from spacy
+
+
+
+
