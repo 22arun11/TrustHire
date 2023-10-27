@@ -13,13 +13,7 @@ spacy
 openai
 fitz
 PyMuPDF
-spacy[en_core_web_sm]
-# https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0.tar.gz
-
-
-
-#i want to install en_core_web_sm from spacy
-
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
 
 
 
