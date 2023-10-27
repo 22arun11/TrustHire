@@ -9,11 +9,11 @@ streamlit-tags
 Pillow
 nltk
 pdfminer3
-spacy==3.6.0
+spacy==2.3.5
 openai
 fitz
 PyMuPDF
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0.tar.gz
+# https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0.tar.gz
 
 
 
