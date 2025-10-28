@@ -1,4 +1,4 @@
-# 🛡️ ResuGuard: Secure LLM-Powered Resume Analysis System
+# 🛡️ TrustHire: Secure LLM-Powered Resume Analysis System
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Framework-brightgreen.svg)](https://fastapi.tiangolo.com/)
