@@ -1,4 +1,4 @@
-# 🛡️ TrustHire: Secure LLM-Powered Resume Analysis System
+# 🛡️ TrustHire: Secure LLM-Powered ume Analysis System
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Framework-brightgreen.svg)](https://fastapi.tiangolo.com/)
@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![AI Powered](https://img.shields.io/badge/AI-LLM%20Integrated-purple.svg)]()
 
-> **ResuGuard** is an AI-powered, security-focused resume analysis platform that leverages **Large Language Models (LLMs)** for intelligent candidate evaluation while ensuring **data privacy**, **fraud detection**, and **authenticity verification**.
+> **TrustHire** is an AI-powered, security-focused resume analysis platform that leverages **Large Language Models (LLMs)** for intelligent candidate evaluation while ensuring **data privacy**, **fraud detection**, and **authenticity verification**.
 
 ---
 
@@ -70,7 +70,7 @@
            ┌─────────▼──────────┐
            │    LLM Engine      │
            │ (OpenAI / Ollama)  │
-           │   • Resume Parsing │
+           │   • ume Parsing │
            │   • Summary Gen.   │
            │   • Bias Testing   │
            └─────────┬──────────┘
